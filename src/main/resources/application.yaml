@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    username: spring-session
+    password: spring-session
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3309/spring-session?useUnicode=true&characterEncoding=GBK&useSSL=false&autoReconnect=true
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+  session:
+    store-type: redis
+  redis:
+    port: 6370
+
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+
+
+server:
+  session:
+    timeout: 300

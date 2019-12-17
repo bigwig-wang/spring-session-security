@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  redis-sentinel:
+    image: bitnami/redis-sentinel:latest
+    ports:
+      - 26379:26379
+    environment:
+      - REDIS_MASTER_HOST=localhost
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6370:6379
+  mysql:
+    image: mysql:5.7
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=spring-session
+      - MYSQL_PASSWORD=spring-session
+      - MYSQL_DATABASE=spring-session
+    ports:
+      - 3309:3306
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_bin
